@@ -1,20 +1,11 @@
 import Footer from '@/components/Footer';
-import { login } from '@/services/ant-design-pro/api';
-import { getFakeCaptcha } from '@/services/ant-design-pro/login';
-import {
-  LockOutlined,
-  MobileOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
-import {
-  LoginForm,
-  ProFormCaptcha,
-  ProFormCheckbox,
-  ProFormText,
-} from '@ant-design/pro-components';
+import {login} from '@/services/ant-design-pro/api';
+import {getFakeCaptcha} from '@/services/ant-design-pro/login';
+import {LockOutlined, MobileOutlined, UserOutlined,} from '@ant-design/icons';
+import {LoginForm, ProFormCaptcha, ProFormCheckbox, ProFormText,} from '@ant-design/pro-components';
 import { Alert, message, Tabs } from 'antd';
-import React, { useState } from 'react';
-import { history, useModel } from 'umi';
+import React, {useState} from 'react';
+import {history, useModel} from 'umi';
 import styles from './index.less';
 
 const LoginMessage: React.FC<{
@@ -38,7 +29,7 @@ const Login: React.FC = () => {
   const fetchUserInfo = async () => {
     const userInfo = await initialState?.fetchUserInfo?.();
 
-    if (userInfo) {
+   if (userInfo) {
       await setInitialState((s) => ({ ...s, currentUser: userInfo }));
     }
   };
@@ -62,16 +53,14 @@ const Login: React.FC = () => {
         history.push(redirect || '/');
         return;
       }
-
-
       setUserLoginState(user);
-    } catch (error) {
-      const defaultLoginFailureMessage = '登录失败，请重试！';
+    } catch (error: any) {
+     const defaultLoginFailureMessage = '登录失败，请重试！';
       message.error(defaultLoginFailureMessage);
     }
   };
 
-  const { status, type: loginType } = userLoginState;
+  const {status, type: loginType } = userLoginState;
   return (
     <div className={styles.container}>
       <div className={styles.content}>

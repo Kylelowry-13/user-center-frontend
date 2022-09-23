@@ -14,10 +14,17 @@ declare namespace API {
     userStatus?: number;
     createTime: Date;
     isManager: number;
-
-    //框架自带
-    unreadCount: number;
   };
+
+  /**
+   * 对接后端通用返回类
+   */
+  type BaseResponse<T> = {
+    code?: number,
+    date?: T,
+    message?: string,
+    description?: string,
+  }
 
   type LoginResult = {
     status?: string;

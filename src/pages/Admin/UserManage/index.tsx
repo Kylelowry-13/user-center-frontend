@@ -1,7 +1,7 @@
-import type {ActionType, ProColumns} from '@ant-design/pro-components';
-import {ProTable, TableDropdown} from '@ant-design/pro-components';
-import {useRef} from 'react';
-import {searchUsers} from "@/services/ant-design-pro/api";
+import { useRef } from 'react';
+import type { ProColumns, ActionType } from '@ant-design/pro-table';
+import ProTable, { TableDropdown } from '@ant-design/pro-table';
+import { searchUsers } from "@/services/ant-design-pro/api";
 import {Image} from "antd";
 
 
@@ -71,7 +71,6 @@ const columns: ProColumns<API.CurrentUser>[] = [
     title: '注册时间',
     align: "center",
     dataIndex: 'createTime',
-    ellipsis: true,
     valueType: 'dateRange',
   },
   {
@@ -163,7 +162,6 @@ const columns: ProColumns<API.CurrentUser>[] = [
   // },
   {
     title: '操作',
-    align: "center",
     valueType: 'option',
     key: 'option',
     render: (text, record, _, action) => [
@@ -175,7 +173,7 @@ const columns: ProColumns<API.CurrentUser>[] = [
       >
         编辑
       </a>,
-      <a href={record.url} target="_blank" rel="noopener noreferrer" key="view">
+      <a  target="_blank" rel="noopener noreferrer" key="view">
         查看
       </a>,
       <TableDropdown
@@ -189,7 +187,6 @@ const columns: ProColumns<API.CurrentUser>[] = [
     ],
   },
 ];
-
 
 export default () => {
   const actionRef = useRef<ActionType>();
@@ -211,18 +208,13 @@ export default () => {
       columnsState={{
         persistenceKey: 'pro-table-singe-demos',
         persistenceType: 'localStorage',
-        onChange(value) {
-          console.log('value: ', value);
-        },
+        // onChange(value) {
+        //   console.log('value: ', value);
+        // },
       }}
       rowKey="id"
       search={{
         labelWidth: 'auto',
-      }}
-      options={{
-        setting: {
-          listsHeight: 400,
-        },
       }}
       form={{
         // 由于配置了 transform，提交的参与与定义的不同这里需要转化一下

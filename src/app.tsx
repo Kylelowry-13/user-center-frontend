@@ -34,16 +34,17 @@ export async function getInitialState(): Promise<{
 }> {
   const fetchUserInfo = async () => {
     try {
-      const user = await queryCurrentUser();
-      return user;
+
+      return await queryCurrentUser();
     } catch (error) {
-      //history.push(loginPath);
+      history.push(loginPath);
     }
     return undefined;
   };
   //如果不是登录页面，执行
   if (WHITE_LIST.includes(history.location.pathname)) {
     return {
+      // @ts-ignore
       fetchUserInfo,
       settings: defaultSettings,
     };
@@ -51,7 +52,9 @@ export async function getInitialState(): Promise<{
   //获取用户信息
   const currentUser = await fetchUserInfo();
   return {
+    // @ts-ignore
     fetchUserInfo,
+    // @ts-ignore
     currentUser,
     settings: defaultSettings,
   };
@@ -69,7 +72,6 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     footerRender: () => <Footer />,
     onPageChange: () => {
       const { location } = history;
-
       if (WHITE_LIST.includes(location.pathname)) {
         return;
       }
@@ -80,7 +82,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) =
     },
     links: isDev
       ? [
-          <Link key="openapi" to="/umi/plugin/openapi" target="_blank">
+          <Link to="/umi/plugin/openapi" target="_blank">
             <LinkOutlined />
             <span>OpenAPI 文档</span>
           </Link>,

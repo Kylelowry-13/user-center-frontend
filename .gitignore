@@ -5,6 +5,7 @@
 # roadhog-api-doc ignore
 /src/utils/request-temp.js
 _roadhog-api-doc
+.umi
 
 # production
 /dist
@@ -14,6 +15,7 @@ _roadhog-api-doc
 npm-debug.log*
 yarn-error.log
 
+.vscode
 /coverage
 .idea
 yarn.lock
